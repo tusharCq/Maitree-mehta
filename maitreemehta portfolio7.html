@@ -183,57 +183,8 @@
         <div class="mx-auto px-6 container">
             <h3 class="mb-16 font-playfair font-bold text-4xl text-center">My Projects</h3>
             
-            <!-- Print Projects -->
-            <div class="mb-16">
-                <h4 class="mb-8 font-playfair font-bold text-2xl">Print Projects</h4>
-                <div class="gap-8 grid md:grid-cols-3">
-                        <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform" id="greeceProject">
-                        <div class="relative h-64">
-                            <img src="PORTFOLIO-preview.jpg" class="absolute inset-0 w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300"></div>
-                        </div>
-                        <div class="bg-white p-6">
-                            <h5 class="mb-2 font-semibold">Summer in Greece</h5>
-                            <p class="text-gray-600">View PDF Collection</p>
-                        </div>
-                    </div>
-
-                    <!-- Greece Project Modal -->
-                    <div class="hidden z-50 fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 p-4" id="greeceModal">
-                        <div class="bg-white rounded-lg w-full max-w-6xl max-h-screen overflow-auto">
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-4">
-                                    <h3 class="font-playfair font-bold text-2xl">Summer in Greece Collection</h3>
-                                    <button class="text-gray-500 hover:text-textile text-2xl" id="closeGreeceModal">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <div class="w-full h-[80vh]">
-                                    <iframe src="PORTFOLIO.pdf" class="border-0 w-full h-full"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform">
-                        <div class="bg-textile h-64"></div>
-                        <div class="bg-white p-6">
-                            <h5 class="mb-2 font-semibold">Dish Sous</h5>
-                            <p class="text-gray-600">Abstract kitchen-inspired patterns</p>
-                        </div>
-                    </div>
-                    <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform">
-                        <div class="bg-textile h-64"></div>
-                        <div class="bg-white p-6">
-                            <h5 class="mb-2 font-semibold">Bean Blossom</h5>
-                            <p class="text-gray-600">Floral patterns with organic shapes</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Surface Projects -->
-            <div>
+            <div class="mb-16">
                 <h4 class="mb-8 font-playfair font-bold text-2xl">Surface Projects</h4>
                 <div class="gap-8 grid md:grid-cols-3">
                     <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform">
@@ -255,6 +206,38 @@
                         <div class="bg-white p-6">
                             <h5 class="mb-2 font-semibold">Golden Bloom Skirt</h5>
                             <p class="text-gray-600">3D floral surface embellishments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Projects -->
+            <div>
+                <h4 class="mb-8 font-playfair font-bold text-2xl">Print Projects</h4>
+                <div class="gap-8 grid md:grid-cols-3">
+                    <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform" id="greeceProject">
+                        <div class="relative h-64">
+                            <img src="PORTFOLIO-preview.jpg" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300"></div>
+                        </div>
+                        <div class="bg-white p-6">
+                            <h5 class="mb-2 font-semibold">Summer in Greece</h5>
+                            <p class="text-gray-600">View PDF Collection</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform">
+                        <div class="bg-textile h-64"></div>
+                        <div class="bg-white p-6">
+                            <h5 class="mb-2 font-semibold">Dish Sous</h5>
+                            <p class="text-gray-600">Abstract kitchen-inspired patterns</p>
+                        </div>
+                    </div>
+                    <div class="group relative shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 transform">
+                        <div class="bg-textile h-64"></div>
+                        <div class="bg-white p-6">
+                            <h5 class="mb-2 font-semibold">Bean Blossom</h5>
+                            <p class="text-gray-600">Floral patterns with organic shapes</p>
                         </div>
                     </div>
                 </div>
@@ -383,19 +366,10 @@
         closeContact.addEventListener('click', closeContactPanel);
         overlay.addEventListener('click', closeContactPanel);
 
-        // Greece Project Modal functionality
+        // Greece Project Click Handler
         const greeceProject = document.getElementById('greeceProject');
-        const greeceModal = document.getElementById('greeceModal');
-        const closeGreeceModal = document.getElementById('closeGreeceModal');
-
         greeceProject.addEventListener('click', () => {
-            greeceModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-
-        closeGreeceModal.addEventListener('click', () => {
-            greeceModal.classList.add('hidden');
-            document.body.style.overflow = '';
+            window.location.href = 'greece-gallery.html';
         });
 
         // Smooth scrolling for anchor links
