@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer in Greece Collection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow-x: hidden;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            z-index: 100;
+        }
+        #pdf-container {
+            width: 100%;
+        }
+        .pdf-page {
+            width: 100vw;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .pdf-page {
+            position: relative;
+        }
+        .pdf-page canvas {
+            width: 100%;
+            display: block;
+        }
+        .copyright-overlay {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: Arial;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            padding: 3px 8px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <a href="maitreemehta portfolio7.html" class="back-btn">← Back</a>
+    
+    <div id="pdf-container"></div>
+
+    <script>
+        // Initialize PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+        
+        // Load the PDF
+        const loadingTask = pdfjsLib.getDocument('PORTFOLIO.pdf');
+        
+        loadingTask.promise.then(function(pdf) {
+            // Render all pages
+            for (let i = 1; i <= pdf.numPages; i++) {
+                pdf.getPage(i).then(function(page) {
+                    const viewport = page.getViewport({ scale: 1.0 });
+                    
+                    // Scale to full viewport width
+                    const scale = window.innerWidth / viewport.width;
+                    const scaledViewport = page.getViewport({ scale });
+                    
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = scaledViewport.width;
+                    canvas.height = scaledViewport.height;
+                    
+                    // Create page container
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'pdf-page';
+                    pageDiv.appendChild(canvas);
+                    
+                    // Add copyright overlay
+                    const copyrightDiv = document.createElement('div');
+                    copyrightDiv.className = 'copyright-overlay';
+                    copyrightDiv.textContent = '©2025 Maitree Mehta Portfolio';
+                    pageDiv.appendChild(copyrightDiv);
+                    
+                    document.getElementById('pdf-container').appendChild(pageDiv);
+                    
+                    // Render page
+                    page.render({
+                        canvasContext: context,
+                        viewport: scaledViewport
+                    }).then(() => {
+                        // Add copyright text after rendering
+                        context.font = 'bold 12px Arial';
+                        context.fillStyle = 'rgba(255,255,255,0.9)';
+                        context.textAlign = 'right';
+                        context.shadowColor = 'rgba(0,0,0,0.5)';
+                        context.shadowBlur = 2;
+                        context.shadowOffsetX = 1;
+                        context.shadowOffsetY = 1;
+                        context.fillText('©2025 Maitree Mehta Portfolio', 
+                            canvas.width - 15, 
+                            canvas.height - 15);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
